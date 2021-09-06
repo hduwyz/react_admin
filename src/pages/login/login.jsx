@@ -8,11 +8,11 @@ import {
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 
 import './login.less'
-import logo from './images/logo.png'
+import logo from '../../assets/images/logo.png'
 import { reqLogin } from '../../api'
 import memoryUtils from '../../utils/memoryUtils'
 import storageUtils from '../../utils/storageUtils'
-import { Redirect } from 'react-router-dom'
+// import { Redirect } from 'react-router-dom'
 
 export default class Login extends Component {
 
@@ -64,14 +64,15 @@ export default class Login extends Component {
         callback() // 验证通过
       }
     }
+    
 
   render() {
-      //如果用户已经登录则跳转到管理页面
-    const user = memoryUtils.user
-    if (user || user._id) {
-      //自动跳转到登录
-      return <Redirect to='/'/>;
-  }
+    //   //如果用户已经登录则跳转到管理页面
+    // const user = memoryUtils.user
+    // if (user || user._id) {
+    //   //自动跳转到登录
+    //   return <Redirect to='/'/>;
+    // }
     return (
       <div className="login">
         <header className="login-header">
