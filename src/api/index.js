@@ -21,16 +21,17 @@ json请求的接口请求函数
  */
 export const reqWeather = (city) => {
 
-    return new Promise((resolve, reject) => {
-      const url = `http://api.map.baidu.com/telematics/v3/weather?location=${city}&output=json&ak=VTDtuRKrN2drfDQ9xL5su6XRvYlLm5l4`
+  return new Promise((resolve, reject) => {
+    
+      const url = `https://restapi.amap.com/v3/weather/weatherInfo?city=${city}&output=JSON&key=f6f7c044a76e312031412c6e1ae67758`
       // 发送jsonp请求
       jsonp(url, {}, (err, data) => {
         console.log('jsonp()', err, data)
         // 如果成功了
-        if (!err && data.status==='success') {
+        if (!err && data.status==='1') {
           // 取出需要的数据
-          const {dayPictureUrl, weather} = data.results[0].weather_data[0]
-          resolve({dayPictureUrl, weather})
+          const {temperature, weather} = data.lives[0]
+          resolve({temperature, weather})
         } else {
           // 如果失败了
           message.error('获取天气信息失败!')
@@ -39,7 +40,7 @@ export const reqWeather = (city) => {
       })
     })
   }
-//   reqWeather('北京')
+  // reqWeather('北京')
   /*
   jsonp解决ajax跨域的原理
     1). jsonp只能解决GET类型的ajax请求跨域问题
